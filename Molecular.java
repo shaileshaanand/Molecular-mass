@@ -57,9 +57,6 @@ public class Molecular
 	}
 	public static void main(String[] args)throws IOException
 	{
-		//BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
-		//System.out.print("Enter Compound: ");
-		//String C=in.readLine();
 		String C=args[0];
 		Molecular m = new Molecular();
 		double MM= m.cal(C);
