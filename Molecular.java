@@ -1,22 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Gist
- @shaileshaanand
- Sign out
- Watch 0
-  Star 0
-  Fork 0 shaileshaanand/Molecular-mass
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Settings Insights 
-Tree: b404d27c3b Find file Copy pathMolecular-mass/Molecular.java
-b404d27  8 days ago
-@shaileshaanand shaileshaanand Some code cleanup
-1 contributor
-RawBlameHistory    
-75 lines (66 sloc)  2.41 KB
 import java.io.*;
 public class Molecular
 {
@@ -90,6 +71,3 @@ public class Molecular
 
 
 
-
-Contact GitHub API Training Shop Blog About
-© 2017 GitHub, Inc. Terms Privacy Security Status Help
