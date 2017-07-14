@@ -63,9 +63,15 @@ public class Molecular
         while(!(C=in.readLine()).equals("exit"))
         {
             Molecular m = new Molecular();
-            double MM= m.cal(C);
-            int MMi=(int)Math.round(MM);
-            System.out.println("Molecular weight of "+C+" ="+MM);
+            try
+            {
+                  double MM= m.cal(C);
+                  int MMi=(int)Math.round(MM);
+                  System.out.println("Molecular weight of "+C+" ="+MM);
+            }catch(ArrayIndexOutOfBoundsException e)
+            {
+                  System.out.println("Error:Invalid Compound\nEnter exit to exit.");
+            }
             System.out.print("Enter Compound: ");
         }
     }
