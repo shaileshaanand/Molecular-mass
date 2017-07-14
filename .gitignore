@@ -1,6 +1,6 @@
 # Compiled class file
 *.class
-
+*.bluej
 # Log file
 *.log
 
