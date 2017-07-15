@@ -62,21 +62,37 @@ public class Molecular{
         throw new ElementNotFoundException(s);
     }
     public static void main(String[] args)throws IOException{
-        String C;
-        BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("Enter Compound: ");
-        while(!(C=in.readLine()).equals("exit")){
-            Molecular m = new Molecular();
-            try{
-                  double MM= m.cal(C);
-                  int MMi=(int)Math.round(MM);
-                  System.out.println("Molecular weight of "+C+" ="+MM);
-            }catch(ArrayIndexOutOfBoundsException e){
-                  System.out.println("Error:Invalid Compound\nEnter exit to exit.");
-            }catch(ElementNotFoundException ex){
-                  System.out.println("Error:Invalid element "+ex.message()+"\nEnter exit to exit.");
-            }
+
+        double MM;
+        Molecular m = new Molecular();
+        if (args.length==0){
+            BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+            String C;
             System.out.print("Enter Compound: ");
+            while(!(C=in.readLine()).equals("exit")){
+                try{
+                        MM= m.cal(C);
+                        int MMi=(int)Math.round(MM);
+                        System.out.println("Molecular weight of "+C+" ="+MM);
+                   }catch(ArrayIndexOutOfBoundsException e){
+                        System.out.println("Error:Invalid Compound\nEnter exit to exit.");
+                   }catch(ElementNotFoundException ex){
+                        System.out.println("Error:Invalid element "+ex.message()+"\nEnter exit to exit.");
+                   }
+                System.out.print("Enter Compound: ");
+            }
+        }else if (args.length==1) {
+          try{
+                  MM= m.cal(args[0]);
+                  int MMi=(int)Math.round(MM);
+                  System.out.println("Molecular weight of "+args[0]+" ="+MM);
+             }catch(ArrayIndexOutOfBoundsException e){
+                  System.out.println("Error:Invalid Compound");
+             }catch(ElementNotFoundException ex){
+                  System.out.println("Error:Invalid element "+ex.message());
+          }
+        }else{
+          System.out.println("Error:Invalid Input.");
         }
     }
 }
