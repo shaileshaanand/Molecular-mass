@@ -1,12 +1,12 @@
 public class ElementNotFoundException extends Exception
 {
-	String M;
-	ElementNotFoundException(String m)
+	String Message;
+	ElementNotFoundException(String Message)
 	{
-		M=m;
+		this.Message=Message;
 	}
 	public String message()
 	{
-		return M;
+		return Message;
 	}
 }
