@@ -81,15 +81,18 @@ public class Molecular{
                    }
                 System.out.print("Enter Compound: ");
             }
-        }else if (args.length==1) {
-            try{
-                molecularMass= m.cal(args[0]);
-                int MMi=(int)Math.round(molecularMass);
-                System.out.println("Molecular weight of "+args[0]+" ="+molecularMass);
-            }catch(ArrayIndexOutOfBoundsException e){
-                System.out.println("Error:Invalid Compound");
-            }catch(ElementNotFoundException ex){
-                System.out.println("Error:Invalid element "+ex.message());
+        }else if (args.length>=1) {
+            int i;
+            for(i=0;i<args.length;i++){
+                try{
+                    molecularMass= m.cal(args[i]);
+                    int MMi=(int)Math.round(molecularMass);
+                    System.out.println("Molecular weight of "+args[i]+" ="+molecularMass);
+                }catch(ArrayIndexOutOfBoundsException e){
+                    System.out.println("Error:Invalid Compound");
+                }catch(ElementNotFoundException ex){
+                    System.out.println("Error:Invalid element "+ex.message());
+                }
             }
         }else{
             System.out.println("Error:Invalid Input.");
