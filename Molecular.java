@@ -62,7 +62,6 @@ public class Molecular{
         throw new ElementNotFoundException(element);
     }
     public static void main(String[] args)throws IOException{
-
         double molecularMass;
         Molecular m = new Molecular();
         if (args.length==0){
