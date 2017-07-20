@@ -1,4 +1,4 @@
-import java.io.*;
+import java.util.*;
 public class Molecular  {
     public double cal(String compound)throws ElementNotFoundException {
         int length,stringIndex=-1,i,n;
@@ -61,14 +61,14 @@ public class Molecular  {
         }
         throw new ElementNotFoundException(element);
     }
-    public static void main(String[] args)throws IOException {
+    public static void main(String[] args) {
         double molecularMass;
         Molecular m = new Molecular();
         if (args.length==0) {
-            BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+            Scanner in=new Scanner(System.in);
             String C;
             System.out.print("Enter Compound: ");
-            while(!(C=in.readLine()).equals("exit")) {
+            while(!(C=in.next()).equals("exit")) {
                 try {
                         molecularMass= m.cal(C);
                         int MMi=(int)Math.round(molecularMass);
