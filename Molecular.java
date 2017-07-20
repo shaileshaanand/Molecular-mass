@@ -1,7 +1,7 @@
 import java.util.*;
 public class Molecular  {
     public double cal(String compound)throws ElementNotFoundException {
-        int length,stringIndex=-1,i,n;
+        int length,stringIndex=-1,i,n,multiplier=0;
         double atomicMass,molecularMass=0;
         char ch;
         String element;
@@ -13,7 +13,11 @@ public class Molecular  {
             ch=compound.charAt(i);
             if(Character.isUpperCase(ch))
                 stringIndex++;
-            elements[stringIndex]=elements[stringIndex]+ch;
+            if(Character.isDigit(ch) && stringIndex==-1) {
+                multiplier=(multiplier*10)+Integer.parseInt(Character.toString(ch));
+            }else {
+                elements[stringIndex]=elements[stringIndex]+ch;
+            }
         }
         stringIndex=0;
         while(elements[stringIndex]!="" && elements[stringIndex]!=null) {
@@ -34,6 +38,7 @@ public class Molecular  {
             molecularMass+=atomicMass*n;
             stringIndex++;
         }
+        molecularMass*=(multiplier==0)?1:multiplier;
         return molecularMass;
     }
     public double atomicMassOf(String element)throws ElementNotFoundException {
