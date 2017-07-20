@@ -1,6 +1,6 @@
 import java.util.*;
 public class Molecular  {
-    public double cal(String compound)throws ElementNotFoundException {
+    public void cal(String compound) {
         int length,stringIndex=-1,i,n,multiplier=0;
         double atomicMass,molecularMass=0;
         char ch;
@@ -9,37 +9,49 @@ public class Molecular  {
         length=compound.length();
         for(i=0;i<length;i++)
             elements[i]="";
-        for(i=0;i<length;i++) {
-            ch=compound.charAt(i);
-            if(Character.isUpperCase(ch))
+        try {
+            for(i=0;i<length;i++) {
+                ch=compound.charAt(i);
+                if(Character.isUpperCase(ch))
+                    stringIndex++;
+                if(Character.isDigit(ch) && stringIndex==-1) {
+                    multiplier=(multiplier*10)+Integer.parseInt(Character.toString(ch));
+                }else {
+                    elements[stringIndex]=elements[stringIndex]+ch;
+                }
+            }
+            stringIndex=0;
+            while(elements[stringIndex]!="" && elements[stringIndex]!=null) {
+                length=elements[stringIndex].length();
+                if(length==1) {
+                    n=1;
+                    element=elements[stringIndex];
+                }
+                else if(Character.isLetter(elements[stringIndex].charAt(1))) {
+                    n=(length==2)?1:Integer.parseInt(elements[stringIndex].substring(2,length));
+                    element=elements[stringIndex].substring(0,2);
+                }
+                else {
+                    n=Integer.parseInt(elements[stringIndex].substring(1,length));
+                    element=elements[stringIndex].substring(0,1);
+                }
+                atomicMass=atomicMassOf(element);
+                molecularMass+=atomicMass*n;
                 stringIndex++;
-            if(Character.isDigit(ch) && stringIndex==-1) {
-                multiplier=(multiplier*10)+Integer.parseInt(Character.toString(ch));
+            }
+            molecularMass*=(multiplier==0)?1:multiplier;
+            if(molecularMass!=0.0) {
+                System.out.println("Molecular weight of "+compound+" ="+molecularMass);
             }else {
-                elements[stringIndex]=elements[stringIndex]+ch;
+                System.out.println("Error:Invalid Compound");
             }
+        }catch(ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error:Invalid Compound");
+        }catch(ElementNotFoundException e2) {
+            System.out.println("Error:Invalid element "+e2.message());
+        }catch(java.lang.NumberFormatException e3) {
+            System.out.println("Error:Invalid Compound");
         }
-        stringIndex=0;
-        while(elements[stringIndex]!="" && elements[stringIndex]!=null) {
-            length=elements[stringIndex].length();
-            if(length==1) {
-                n=1;
-                element=elements[stringIndex];
-            }
-            else if(Character.isLetter(elements[stringIndex].charAt(1))) {
-                n=(length==2)?1:Integer.parseInt(elements[stringIndex].substring(2,length));
-                element=elements[stringIndex].substring(0,2);
-            }
-            else {
-                n=Integer.parseInt(elements[stringIndex].substring(1,length));
-                element=elements[stringIndex].substring(0,1);
-            }
-            atomicMass=atomicMassOf(element);
-            molecularMass+=atomicMass*n;
-            stringIndex++;
-        }
-        molecularMass*=(multiplier==0)?1:multiplier;
-        return molecularMass;
     }
     public double atomicMassOf(String element)throws ElementNotFoundException {
         String Elements[]= {"H","He","Li","Be","B","C","N","O","F","Ne","Na","Mg","Al","Si","P",
@@ -74,29 +86,13 @@ public class Molecular  {
             String C;
             System.out.print("Enter Compound: ");
             while(!(C=in.next()).equals("exit")) {
-                try {
-                        molecularMass= m.cal(C);
-                        int MMi=(int)Math.round(molecularMass);
-                        System.out.println("Molecular weight of "+C+" ="+molecularMass);
-                   }catch(ArrayIndexOutOfBoundsException e) {
-                        System.out.println("Error:Invalid Compound\nEnter exit to exit.");
-                   }catch(ElementNotFoundException ex) {
-                        System.out.println("Error:Invalid element "+ex.message()+"\nEnter exit to exit.");
-                   }
+                m.cal(C);
                 System.out.print("Enter Compound: ");
             }
         }else if (args.length>=1)  {
             int i;
             for(i=0;i<args.length;i++) {
-                try {
-                    molecularMass= m.cal(args[i]);
-                    int MMi=(int)Math.round(molecularMass);
-                    System.out.println("Molecular weight of "+args[i]+" ="+molecularMass);
-                }catch(ArrayIndexOutOfBoundsException e) {
-                    System.out.println("Error:Invalid Compound");
-                }catch(ElementNotFoundException ex) {
-                    System.out.println("Error:Invalid element "+ex.message());
-                }
+                m.cal(args[i]);
             }
         }else {
             System.out.println("Error:Invalid Input.");
