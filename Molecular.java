@@ -16,7 +16,7 @@ public class Molecular  {
             elements[stringIndex]=elements[stringIndex]+ch;
         }
         stringIndex=0;
-        while(elements[stringIndex]!=""&&elements[stringIndex]!=null) {
+        while(elements[stringIndex]!="" && elements[stringIndex]!=null) {
             length=elements[stringIndex].length();
             if(length==1) {
                 n=1;
