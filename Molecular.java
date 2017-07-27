@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
-public class MolecularMass2 {
+public class Molecular {
     public static void main(String[] args) {
         JFrame f=new JFrame("Molecular Mass");
         f.setSize(340,150);
@@ -24,7 +24,7 @@ public class MolecularMass2 {
             public void actionPerformed(ActionEvent e) {
                 int i;
                 Entity en;
-                MolecularMass2 ob=new MolecularMass2();
+                Molecular ob=new Molecular();
                 double molecularMass=0;
                 try {
                     ArrayList<Entity> ent = ob.getEntities(tf1.getText());
